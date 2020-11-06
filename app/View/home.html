@@ -33,24 +33,15 @@
    </tr>
  </thead>
  <tbody>
+  {% for equipamento in equipamentos %}
    <tr>
-     <th scope="row">1</th>
-     <td>Mark</td>
-     <td>Otto</td>
-     <td>@mdo</td>
+     <td><a href="?pagina=equipamento&metodo=viewEquipamento&id={{equipamento.id}}">{{equipamento.modelo}}</a></td>
+     <td>{{equipamento.num_serial}}</td>
+     <td>{{equipamento.departamento}}</td>
+     <td>{{equipamento.categoria}}</td>
    </tr>
-   <tr>
-     <th scope="row">2</th>
-     <td>Jacob</td>
-     <td>Thornton</td>
-     <td>@fat</td>
-   </tr>
-   <tr>
-     <th scope="row">3</th>
-     <td>Larry</td>
-     <td>the Bird</td>
-     <td>@twitter</td>
-   </tr>
+
+   {% endfor %}
  </tbody>
 </table>
 
@@ -87,9 +78,16 @@
      </div>
 
      <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Detalhes</label>
+      <div class="col-sm-10">
+        <textarea name="detalhes" class="form-control" id="detalhe" placeholder="Insira o modelo do equipamento"></textarea>
+      </div>
+    </div>
+
+     <div class="form-group row">
          <label class="col-sm-2 col-form-label">Serial</label>
          <div class="col-sm-10">
-           <input name="serial" type="number" class="form-control" id="serial" placeholder="Insira o número Serial">
+           <input name="num_serial" type="number" class="form-control" id="serial" placeholder="Insira o número Serial">
          </div>
      </div>
 
@@ -112,9 +110,9 @@
          <label>Categoria</label>
          <select id="categoria" name="categoria" class="form-control">
            <option selected>Selecione</option>
-           <option>Desktop</option>
-           <option>Notbook</option>
-           <option>Equipamento</option>
+           <option value="desktop">Desktop</option>
+           <option value="notbook">Notbook</option>
+           <option value="equipamento">Equipamento</option>
          </select>
        </div>
      </div>  

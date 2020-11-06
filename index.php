@@ -5,6 +5,8 @@
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/EquipamentoController.php';
 require_once 'app/Controller/ErroController.php';
+require_once 'app/Model/Connection.php';
+require_once 'app/Model/Equipamento.php';
 require_once 'app/Core/Core.php';
 require_once 'vendor/autoload.php';
 
