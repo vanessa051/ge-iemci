@@ -1,5 +1,7 @@
 <?php
 
+//SE NÃO EXISTIR PAGINA ELE VAI DIRETO PARA O LoginController.php
+
 class Core{
     public function start($urlGet){
 

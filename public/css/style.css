@@ -34,3 +34,15 @@ table{
     background-color: #03A6A6;
     color: white;
 }
+
+.det-equi{
+    margin-top: 5%;
+    padding: 10px;
+    justify-content: center;
+    background-color: #03A6A6;
+    color: white;
+}
+
+.alert-registro{
+    margin-bottom: 5%;
+}

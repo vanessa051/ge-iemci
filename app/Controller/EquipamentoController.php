@@ -1,7 +1,7 @@
 <?php
 
 class EquipamentoController{
-    public function index(){
+  /*  public function index(){
 
         $loader = new \Twig\Loader\FilesystemLoader('app/View');
         $twig = new \Twig\Environment($loader);
@@ -13,7 +13,7 @@ class EquipamentoController{
           $conteudo = $template->render($parametros);
           echo $conteudo;
 
-    }
+    }*/
 
     public function viewEquipamento($params){
 
@@ -32,6 +32,7 @@ class EquipamentoController{
           $parametros['num_patrimonio'] = $equipamento->num_patrimonio;
           $parametros['departamento'] = $equipamento->departamento;
           $parametros['categoria'] = $equipamento->categoria;
+          $parametros['registros'] = $equipamento->registros;
 
           
           $conteudo = $template->render($parametros);
@@ -44,16 +45,16 @@ class EquipamentoController{
     }
 
     
-    public function insert()
+    public function addEquipamento()
     {
         try{
             Equipamento::insert($_POST);
-            echo '<script>alert("Publicação inserida com sucesso");</script>';
-            echo'<script>location.href="?pagina=equipamento&metodo=index"</script>';
+            echo '<script>alert("Equipamento inserido com sucesso");</script>';
+            echo'<script>location.href="?pagina=home&metodo=index"</script>';
 
         }catch(Exception $e){
             echo '<script>alert("'.$e->getMessage().'");</script>';
-            echo'<script>location.href="?pagina=equipamento&metodo=index"</script>';
+            echo'<script>location.href="?pagina=home&metodo=index"</script>';
         }
        
     }

@@ -6,7 +6,7 @@ class Equipamento{
         $con = Connection::getConn();
         
 
-        $sql = "SELECT * FROM equipamentos ORDER BY id DESC";
+        $sql = "SELECT *FROM equipamentos ORDER BY id DESC";
         $sql = $con->prepare($sql);
         $sql->execute();
 
@@ -23,6 +23,7 @@ class Equipamento{
         return $resultado;
     }
 
+
     public static function getById($idEquipamento){
         $con = Connection::getConn();
 
@@ -34,23 +35,23 @@ class Equipamento{
         $resultado = $sql->fetchObject('Equipamento');
 
         //ESSA PARTE VAI VER SE TEM REGISTROS DE ALTERACAO NO BD
-       /* if(!$resultado){
-            throw new Exception("Não foi encontrado registro no banco");
+       if(!$resultado){
+            throw new Exception("Ainda não há registros");
         }else{
-            $resultado->comentarios = Equipamento::selecionarComentarios($resultado->id);
+            $resultado->registros = Registro::selecionarRegistros($resultado->id);
 
             
-        }*/
+        }
 
         return $resultado;
 
     }
     
 
-    public static function insert($dadosPost){
+    public static function insert($dadosEquip){
 
         /*FAZER TRATAMENTO DE SQL INJECTION
-        if(empty($dadosPost['modelo']) || empty($dadosPost['serial'])){
+        if(empty($dadosEquip['modelo']) || empty($dadosEquip['serial'])){
             throw new Exception("Preencha todod os canpos", 1);
 
             return false;
@@ -58,14 +59,14 @@ class Equipamento{
 
         $con = Connection::getConn();
 
-        $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial, num_patrimonio, departamento, categoria) VALUES (:model, :det, :num_s, :num_p, :dep, :cat)';
+        $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial, num_patrimonio, departamento, categoria, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, NOW())';
         $sql = $con->prepare($sql);
-        $sql->bindValue(':model', $dadosPost['modelo']);
-        $sql->bindValue(':det', $dadosPost['detalhes']);
-        $sql->bindValue(':num_s', $dadosPost['num_serial']);
-        $sql->bindValue(':num_p', $dadosPost['num_patrimonio']);
-        $sql->bindValue(':dep', $dadosPost['departamento']);
-        $sql->bindValue(':cat', $dadosPost['categoria']);
+        $sql->bindValue(':model', $dadosEquip['modelo']);
+        $sql->bindValue(':det', $dadosEquip['detalhes']);
+        $sql->bindValue(':num_s', $dadosEquip['num_serial']);
+        $sql->bindValue(':num_p', $dadosEquip['num_patrimonio']);
+        $sql->bindValue(':dep', $dadosEquip['departamento']);
+        $sql->bindValue(':cat', $dadosEquip['categoria']);
 
         $resultado = $sql->execute();
 
