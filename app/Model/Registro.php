@@ -1,7 +1,9 @@
 <?php
 
-class Registro{
-    public static function selecionarRegistros($idEquip){
+class Registro
+{
+    public static function selecionarRegistros($idEquip)
+    {
         $con = Connection::getConn();
 
         $sql = "SELECT * FROM registro WHERE id_equip = :id ORDER BY id DESC";
@@ -11,17 +13,17 @@ class Registro{
 
         $resultado = array();
 
-        while($row = $sql->fetchObject('Registro')){
+        while ($row = $sql->fetchObject('Registro')) {
             $resultado[] = $row;
         }
 
         return $resultado;
-
     }
 
-    public static function insert($dadosRegistro){
+    public static function insert($dadosRegistro)
+    {
 
-        if(empty($dadosRegistro['descricao'])){
+        if (empty($dadosRegistro['descricao'])) {
             throw new Exception("Preencha todod os canpos", 1);
 
             return false;
@@ -36,13 +38,13 @@ class Registro{
 
         $resultado = $sql->execute();
 
-        if ($resultado == 0){
+        if ($resultado == 0) {
             throw new Exception(("Registro não inserido"));
 
             return false;
         }
 
         return true;
-
     }
+
 }

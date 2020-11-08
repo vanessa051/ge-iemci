@@ -2,29 +2,31 @@
 
 //SE NÃO EXISTIR PAGINA ELE VAI DIRETO PARA O LoginController.php
 
-class Core{
-    public function start($urlGet){
+class Core
+{
+    public function start($urlGet)
+    {
 
-        if(isset($urlGet['metodo'])){
+        if (isset($urlGet['metodo'])) {
             $acao = $urlGet['metodo'];
-        }else{
+        } else {
             $acao = 'index';
         }
-        
 
-        if(isset($urlGet['pagina'])){
-            $controller = ucfirst($urlGet['pagina'].'Controller');
-        }else{
+
+        if (isset($urlGet['pagina'])) {
+            $controller = ucfirst($urlGet['pagina'] . 'Controller');
+        } else {
             $controller = 'HomeController';
         }
-   
-        if(!class_exists($controller)){
+
+        if (!class_exists($controller)) {
             $controller = 'ErroController';
         }
 
-        if(isset($urlGet['id']) && $urlGet['id'] != null) {
+        if (isset($urlGet['id']) && $urlGet['id'] != null) {
             $id = $urlGet['id'];
-        }else{
+        } else {
             $id = null;
         }
 

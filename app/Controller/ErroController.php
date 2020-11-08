@@ -1,7 +1,9 @@
 <?php
 
-class ErroController{
-    public function index(){
+class ErroController
+{
+    public function index()
+    {
         echo "Pagina Erradas";
     }
 }

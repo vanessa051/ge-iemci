@@ -1,22 +1,24 @@
 <?php
 
-class Equipamento{
+class Equipamento
+{
 
-    public static function allHardwares(){
+    public static function allHardwares()
+    {
         $con = Connection::getConn();
-        
+
 
         $sql = "SELECT *FROM equipamentos ORDER BY id DESC";
         $sql = $con->prepare($sql);
         $sql->execute();
 
-        $resultado =array();
+        $resultado = array();
 
-        while($row = $sql->fetchObject('Equipamento')){
-        $resultado[] = $row;
+        while ($row = $sql->fetchObject('Equipamento')) {
+            $resultado[] = $row;
         }
 
-        if(!$resultado){
+        if (!$resultado) {
             throw new Exception("Não foi encontrado registro no banco");
         }
 
@@ -24,7 +26,8 @@ class Equipamento{
     }
 
 
-    public static function getById($idEquipamento){
+    public static function getById($idEquipamento)
+    {
         $con = Connection::getConn();
 
         $sql = "SELECT * FROM equipamentos WHERE id = :id";
@@ -35,20 +38,18 @@ class Equipamento{
         $resultado = $sql->fetchObject('Equipamento');
 
         //ESSA PARTE VAI VER SE TEM REGISTROS DE ALTERACAO NO BD
-       if(!$resultado){
+        if (!$resultado) {
             throw new Exception("Ainda não há registros");
-        }else{
+        } else {
             $resultado->registros = Registro::selecionarRegistros($resultado->id);
-
-            
         }
 
         return $resultado;
-
     }
-    
 
-    public static function insert($dadosEquip){
+
+    public static function insert($dadosEquip)
+    {
 
         /*FAZER TRATAMENTO DE SQL INJECTION
         if(empty($dadosEquip['modelo']) || empty($dadosEquip['serial'])){
@@ -70,13 +71,61 @@ class Equipamento{
 
         $resultado = $sql->execute();
 
-        if ($resultado == 0){
-            throw new Exception(("Publicação não inserida"));
+        if ($resultado == 0) {
+            throw new Exception(("Equipamento não inserido"));
 
             return false;
         }
 
         return true;
+    }
 
+
+    public static function update($model, $id)
+    {
+
+        $con = Connection::getConn();
+        $sql = "UPDATE equipamentos SET modelo = '{$model}' where id ='{$id}' ";
+        $sql = $con->prepare($sql);
+        $sql->execute();
+        /*  $sql = 'UPDATE equipamentos SET modelo = :model WHERE id = :id)';
+        $sql = $con->prepare($sql);
+
+        $sql->bindValue(':model', $model);
+        $sql->bindValue(':id',$id);
+
+        $sql->execute();
+
+          if ($resultado == 0) {
+            throw new Exception(("Equipamento não inserido"));
+
+            return false;
         }
+         return true;
+        */
+
+
+
+        /*$con = Connection::getConn();
+
+        $sql = 'UPDATE equipamentos SET modelo = :model, detalhes = :det, num_serial = :num_s, num_patrimonio = num_p, departamento = :dep, categoria = :cat WHERE id = :id';
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':model', $params['modelo']);
+        $sql->bindValue(':det', $params['detalhes']);
+        $sql->bindValue(':num_s', $params['num_serial']);
+        $sql->bindValue(':num_p', $params['num_patrimonio']);
+        $sql->bindValue(':dep', $params['departamento']);
+        $sql->bindValue(':cat', $params['categoria']);
+        $sql->bindValue(':id', $params['id_equip'], PDO::PARAM_INT);
+
+        $resultado = $sql->execute();
+
+        if ($resultado == 0){
+            throw new Exception(("Equipamento não alterado"));
+
+            return false;
+        }
+
+        return true;*/
+    }
 }

@@ -1,17 +1,18 @@
 <?php
 
-abstract class Connection{
+abstract class Connection
+{
 
     private static $conn;
 
-    public static function getConn(){
+    public static function getConn()
+    {
 
-        if(self::$conn == null){
+        if (self::$conn == null) {
             self::$conn = new PDO('mysql: host=localhost; dbname=ge-iemci;', 'root', '');
         }
-        
+
 
         return self::$conn;
     }
-
 }
