@@ -18,9 +18,9 @@ class Equipamento
             $resultado[] = $row;
         }
 
-        if (!$resultado) {
+        /*if (!$resultado) {
             throw new Exception("Não foi encontrado registro no banco");
-        }
+        }*/
 
         return $resultado;
     }
@@ -60,7 +60,7 @@ class Equipamento
 
         $con = Connection::getConn();
 
-        $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial, num_patrimonio, departamento, categoria, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, NOW())';
+        $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial , num_patrimonio, departamento, categoria, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, NOW())';
         $sql = $con->prepare($sql);
         $sql->bindValue(':model', $dadosEquip['modelo']);
         $sql->bindValue(':det', $dadosEquip['detalhes']);

@@ -25,6 +25,12 @@
     </div>
   </div>
 
+  {% if equipamentos == false %}
+  <div class="alert alert-warning alert-registro" role="alert">
+    Nenhum registro encontrado
+  </div>
+
+  {% else %} {% for equipamento in equipamentos %}
   <table class="table table-striped ">
     <thead class="thead-table">
       <tr>
@@ -36,7 +42,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for equipamento in equipamentos %}
+   
       <tr>
         <td><a class="alert-link"
             href="?pagina=equipamento&metodo=viewEquipamento&id={{equipamento.id}}">{{equipamento.modelo}}</a></td>
@@ -46,18 +52,9 @@
         <td>{{equipamento.data_cadastro|date("d-M-Y")}}</td>
       </tr>
 
-      {% endfor %}
+      {% endfor %} {% endif %}
     </tbody>
   </table>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -77,10 +74,10 @@
 
           <form method="POST" action="?pagina=equipamento&metodo=addEquipamento">
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Modelo</label>
+              <label class="col-sm-2 col-form-label">Modelo*</label>
               <div class="col-sm-10">
                 <input name="modelo" type="text" class="form-control" id="modelo"
-                  placeholder="Insira o modelo do equipamento">
+                  placeholder="Ex: Dell Inpiron 15 3000" required>
               </div>
             </div>
 
@@ -88,41 +85,41 @@
               <label class="col-sm-2 col-form-label">Detalhes</label>
               <div class="col-sm-10">
                 <textarea name="detalhes" class="form-control" id="detalhe"
-                  placeholder="Insira o modelo do equipamento"></textarea>
+                  placeholder="Ex: RAM de 8 GB, processador Intel Core i7 e armazenamento em HD 500 GB"></textarea>
               </div>
             </div>
 
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Serial</label>
               <div class="col-sm-10">
-                <input name="num_serial" type="number" class="form-control" id="serial"
-                  placeholder="Insira o número Serial">
+                <input name="num_serial" type="text" class="form-control" id="serial"
+                  placeholder="Ex: 001100110011">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Patrimônio Público</label>
+              <label class="col-sm-2 col-form-label">Patrimônio Público*</label>
               <div class="col-sm-10">
-                <input name="num_patrimonio" type="number" class="form-control" id="num_patrimonio"
-                  placeholder="Insira o número do Patrimônio Público">
+                <input name="num_patrimonio" type="text" class="form-control" id="num_patrimonio"
+                  placeholder="Ex: ABC123" required>
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Departamento</label>
+              <label class="col-sm-2 col-form-label">Departamento*</label>
               <div class="col-sm-10">
                 <input name="departamento" type="text" class="form-control" id="departamento"
-                  placeholder="Insira o Departamento do equipamento">
+                  placeholder="Ex: Sala CGPA" required>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-12">
-                <label>Categoria</label>
-                <select id="categoria" name="categoria" class="form-control">
-                  <option selected>Selecione</option>
+                <label>Categoria*</label>
+                <select id="categoria" name="categoria" class="form-control" required>
+                  <option selected value="">Selecione</option>
                   <option value="desktop">Desktop</option>
-                  <option value="notbook">Notbook</option>
+                  <option value="notbook">Notebook</option>
                   <option value="equipamento">Equipamento</option>
                 </select>
               </div>
