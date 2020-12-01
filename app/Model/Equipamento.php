@@ -51,34 +51,42 @@ class Equipamento
     public static function insert($dadosEquip)
     {
 
-        /*FAZER TRATAMENTO DE SQL INJECTION
-        if(empty($dadosEquip['modelo']) || empty($dadosEquip['serial'])){
-            throw new Exception("Preencha todod os canpos", 1);
-
-            return false;
-        }*/
+        /*FAZER TRATAMENTO DE SQL INJECTION*/
 
         $con = Connection::getConn();
 
-        $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial , num_patrimonio, departamento, categoria, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, NOW())';
-        $sql = $con->prepare($sql);
-        $sql->bindValue(':model', $dadosEquip['modelo']);
-        $sql->bindValue(':det', $dadosEquip['detalhes']);
-        $sql->bindValue(':num_s', $dadosEquip['num_serial']);
+        $sql = $con->prepare("SELECT count(*) FROM equipamentos WHERE :num_p = num_patrimonio");
         $sql->bindValue(':num_p', $dadosEquip['num_patrimonio']);
-        $sql->bindValue(':dep', $dadosEquip['departamento']);
-        $sql->bindValue(':cat', $dadosEquip['categoria']);
+        $sql->execute();
+        $count = $sql->fetchColumn();
 
-        $resultado = $sql->execute();
-
-        if ($resultado == 0) {
-            throw new Exception(("Equipamento não inserido"));
-
-            return false;
+        if($count > 0){
+            throw new Exception(("Numero do patromônio público já cadastrado"));
+        }else{
+            $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial , num_patrimonio, departamento, categoria, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, NOW())';
+            $sql = $con->prepare($sql);
+            $sql->bindValue(':model', $dadosEquip['modelo']);
+            $sql->bindValue(':det', $dadosEquip['detalhes']);
+            $sql->bindValue(':num_s', $dadosEquip['num_serial']);
+            $sql->bindValue(':num_p', $dadosEquip['num_patrimonio']);
+            $sql->bindValue(':dep', $dadosEquip['departamento']);
+            $sql->bindValue(':cat', $dadosEquip['categoria']);
+    
+            $resultado = $sql->execute();
+    
+            if ($resultado == 0) {
+                throw new Exception(("Equipamento não inserido"));
+    
+                return false;
+            }           
+        }
+        return true;      
         }
 
-        return true;
-    }
+       
+
+       
+    
 
 
     public static function update($model, $id)

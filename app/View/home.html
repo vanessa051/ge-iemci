@@ -30,7 +30,7 @@
     Nenhum registro encontrado
   </div>
 
-  {% else %} {% for equipamento in equipamentos %}
+  {% endif %}   
   <table class="table table-striped ">
     <thead class="thead-table">
       <tr>
@@ -41,8 +41,10 @@
         <th>Data Cadastro</th>
       </tr>
     </thead>
+
+    {% for equipamento in equipamentos %}
     <tbody>
-   
+      
       <tr>
         <td><a class="alert-link"
             href="?pagina=equipamento&metodo=viewEquipamento&id={{equipamento.id}}">{{equipamento.modelo}}</a></td>
@@ -52,7 +54,7 @@
         <td>{{equipamento.data_cadastro|date("d-M-Y")}}</td>
       </tr>
 
-      {% endfor %} {% endif %}
+      {% endfor %} 
     </tbody>
   </table>
 
@@ -118,9 +120,9 @@
                 <label>Categoria*</label>
                 <select id="categoria" name="categoria" class="form-control" required>
                   <option selected value="">Selecione</option>
-                  <option value="desktop">Desktop</option>
-                  <option value="notbook">Notebook</option>
-                  <option value="equipamento">Equipamento</option>
+                  <option value="Desktop">Desktop</option>
+                  <option value="Notebook">Notebook</option>
+                  <option value="Equipamento">Equipamento</option>
                 </select>
               </div>
             </div>
