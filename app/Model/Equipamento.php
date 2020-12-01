@@ -81,7 +81,7 @@ class Equipamento
             }           
         }
         return true;      
-        }
+    }
 
        
 
