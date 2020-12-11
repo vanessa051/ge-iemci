@@ -24,4 +24,11 @@ class HomeController
             echo $e->getMessage();
         }
     }
+
+    public function logout(){
+        unset($_SESSION['user']);
+        session_destroy();
+
+        header('Location: ?pagina=login$metodo=index');
+    }
 }
