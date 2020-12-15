@@ -2,20 +2,6 @@
 
 class EquipamentoController
 {
-    /*  public function index(){
-
-        $loader = new \Twig\Loader\FilesystemLoader('app/View');
-        $twig = new \Twig\Environment($loader);
-            $template = $twig->load('home.html');
-
-          $parametros = array();
-
-
-          $conteudo = $template->render($parametros);
-          echo $conteudo;
-
-    }*/
-
     public function viewEquipamento($params)
     {
 
@@ -61,16 +47,12 @@ class EquipamentoController
     //FUNÇÃO QUE ALTERA OS DADOS SELECIONADOS
     public function atualizaEquip()
     {
-        
+       
       try {
-
-        $model = $_POST['modelo'];
-        $id = $_POST['id_equip'];
-        Equipamento::update($model, $id);
-            /*Equipamento::update($_POST);
+        Equipamento::update($_POST);
 
             echo '<script>alert("Publicação alterada com sucesso");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
+            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         } catch (Exception $e) {
             echo $e->getMessage(); /*'<script>alert("' . $e->getMessage() . '");</script>';
             echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/

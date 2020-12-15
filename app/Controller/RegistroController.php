@@ -33,7 +33,7 @@ class RegistroController
             header('Location:?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '');
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento"</script>';
+            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         }
     }
 

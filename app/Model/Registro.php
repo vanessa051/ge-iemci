@@ -29,6 +29,8 @@ class Registro
             return false;
         }
 
+        echo $dadosRegistro['descricao'];
+
         $con = Connection::getConn();
 
         $sql = 'INSERT INTO registro (descricao, id_equip, data_registro) VALUES (:descr, :id_equip, NOW())';

@@ -83,40 +83,13 @@ class Equipamento
         return true;      
     }
 
-       
-
-       
-    
-
-
-    public static function update($model, $id)
+    public static function update($params)
     {
 
         $con = Connection::getConn();
-        $sql = "UPDATE equipamentos SET modelo = '{$model}' where id ='{$id}' ";
-        $sql = $con->prepare($sql);
-        $sql->execute();
-        /*  $sql = 'UPDATE equipamentos SET modelo = :model WHERE id = :id)';
-        $sql = $con->prepare($sql);
 
-        $sql->bindValue(':model', $model);
-        $sql->bindValue(':id',$id);
-
-        $sql->execute();
-
-          if ($resultado == 0) {
-            throw new Exception(("Equipamento não inserido"));
-
-            return false;
-        }
-         return true;
-        */
-
-
-
-        /*$con = Connection::getConn();
-
-        $sql = 'UPDATE equipamentos SET modelo = :model, detalhes = :det, num_serial = :num_s, num_patrimonio = num_p, departamento = :dep, categoria = :cat WHERE id = :id';
+        $sql = 'UPDATE equipamentos SET  modelo = :model, detalhes = :det, num_serial = :num_s,num_patrimonio = :num_p, departamento = :dep, categoria = :cat WHERE id = :id';
+        //
         $sql = $con->prepare($sql);
         $sql->bindValue(':model', $params['modelo']);
         $sql->bindValue(':det', $params['detalhes']);
@@ -124,7 +97,9 @@ class Equipamento
         $sql->bindValue(':num_p', $params['num_patrimonio']);
         $sql->bindValue(':dep', $params['departamento']);
         $sql->bindValue(':cat', $params['categoria']);
-        $sql->bindValue(':id', $params['id_equip'], PDO::PARAM_INT);
+        $sql->bindValue(':id', $params['id_equip']);
+
+        $sql->execute();
 
         $resultado = $sql->execute();
 
@@ -134,6 +109,6 @@ class Equipamento
             return false;
         }
 
-        return true;*/
+        return true;
     }
 }

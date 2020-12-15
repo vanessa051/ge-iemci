@@ -41,7 +41,7 @@ class Core
 
         //VERIFICA SE EXISTE USUÁRIO LOGADO    
         if ($this->usuario) {
-            $pg_permission = ['HomeController'];
+            $pg_permission = ['HomeController', 'EquipamentoController', 'RegistroController'];
             //DEFINE A PÁGINA PRINCIPAL PARA O USUÁRIO LOGADO
             if (!isset($controller) || !in_array($controller, $pg_permission)) {
                 $controller = 'HomeController';
