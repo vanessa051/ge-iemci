@@ -41,14 +41,14 @@ class Core
 
         //VERIFICA SE EXISTE USUÁRIO LOGADO    
         if ($this->usuario) {
-            $pg_permission = ['HomeController', 'EquipamentoController', 'RegistroController'];
+            $pg_permission = ['HomeController', 'EquipamentoController', 'RegistroController', 'UsuarioController'];
             //DEFINE A PÁGINA PRINCIPAL PARA O USUÁRIO LOGADO
             if (!isset($controller) || !in_array($controller, $pg_permission)) {
                 $controller = 'HomeController';
                 $acao = 'index';
             }
         } else {
-            $pg_permission = ['LoginController', 'UsuarioController'];
+            $pg_permission = ['LoginController'];
 
             if (!isset($controller) || !in_array($controller, $pg_permission)) {
                 $controller = 'LoginController';

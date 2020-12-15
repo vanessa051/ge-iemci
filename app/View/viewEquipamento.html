@@ -1,19 +1,40 @@
-<nav class="navbar navbar-expand-lg nav-bg">
-  <ul class="navbar-nav mr-auto">
-    <li>
-      <a class="navbar-brand" href="?pagina=home&metodo=index"><img src="../../public/img/logo-iemci.png" width="30"
-          height="30" class="d-inline-block align-top" alt="">Gestão de Equipamentos</a>
-    </li>
-  </ul>
+<!--Navbar-->
+<nav class="navbar navbar-light">
 
-  <ul class="navbar-nav">
-    <li>
-      <a class="navbar-brand logout" href="#">Sair</a>
-    </li>
-  </ul>
+  <!-- Navbar brand -->
+  <a class="navbar-brand nav-top" href="?pagina=home&metodo=index"><img src="public/img/logo-iemci.png" width="30"
+    height="30">Gestão de Equipamentos</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span><i
+        class="fas fa-bars fa-1x"></i></span></button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Minha Conta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?pagina=usuario&metodo=informacaoDaConta&id={{usuario.id}}">Usuários</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?pagina=home&metodo=logout">Sair</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
 </nav>
-
-
+<!--/.Navbar-->
 
 <div class="container">
 

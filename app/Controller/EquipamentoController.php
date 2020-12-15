@@ -22,7 +22,6 @@ class EquipamentoController
             $parametros['categoria'] = $equipamento->categoria;
             $parametros['registros'] = $equipamento->registros;
 
-
             $conteudo = $template->render($parametros);
             echo $conteudo;
         } catch (Exception $e) {
