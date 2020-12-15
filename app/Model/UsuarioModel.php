@@ -19,11 +19,44 @@ class UsuarioModel{
 
                 return true;
             }
-
         }
-
         throw new \Exception('Login Inválido');
+    }
 
+
+
+
+    public static function cadastro($dadosUsua){
+        $con = Connection::getConn();
+
+
+        $sql = $con->prepare("SELECT count(*) FROM usuario WHERE :email = email");
+        $sql->bindValue(':email', $dadosUsua['email']);
+        $sql->execute();
+        $count = $sql->fetchColumn();
+
+        if($count > 0){
+            throw new Exception(("Email já cadastrado."));
+        }else{
+            $sql = 'INSERT INTO usuario (nome, cargo, departamento, email, senha) VALUES (:nome, :cargo, :dep, :email, :senha)';
+            $sql = $con->prepare($sql);
+            $sql->bindValue(':nome', $dadosUsua['nome']);
+            $sql->bindValue(':cargo', $dadosUsua['cargo']);
+            $sql->bindValue(':dep', $dadosUsua['departamento']);
+            $sql->bindValue(':email', $dadosUsua['email']);
+            $sql->bindValue(':senha', $dadosUsua['senha']);
+
+            echo $dadosUsua['nome'];
+            echo $dadosUsua['cargo'];
+            $resultado = $sql->execute();
+    
+            if ($resultado == 0) {
+                throw new Exception(("Usuário não cadastrado."));
+    
+                return false;
+            }           
+        }
+        return true;   
     }
 
 

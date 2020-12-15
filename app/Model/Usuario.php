@@ -5,6 +5,8 @@
 
 class Usuario{
     private $nome;
+    private $cargo;
+    private $departamento;
     private $email;
     private $senha;
 
@@ -15,6 +17,22 @@ class Usuario{
 
     public function getEmail(){
         return $this->email;
+    }
+
+    public function setCargo($cargo){
+        $this->cargo = $cargo;
+    }
+
+    public function getCargo(){
+        return $this->cargo;
+    }
+
+    public function setDepartamento($departamento){
+        $this->departamento = $departamento;
+    }
+
+    public function getDepartamento(){
+        return $this->departamento;
     }
 
     public function setNome($nome){

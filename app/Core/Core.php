@@ -48,7 +48,7 @@ class Core
                 $acao = 'index';
             }
         } else {
-            $pg_permission = ['LoginController'];
+            $pg_permission = ['LoginController', 'UsuarioController'];
 
             if (!isset($controller) || !in_array($controller, $pg_permission)) {
                 $controller = 'LoginController';

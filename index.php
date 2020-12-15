@@ -7,6 +7,7 @@ require_once 'app/Controller/EquipamentoController.php';
 require_once 'app/Controller/ErroController.php';
 require_once 'app/Controller/RegistroController.php';
 require_once 'app/Controller/LoginController.php';
+require_once 'app/Controller/UsuarioController.php';
 require_once 'app/Model/Connection.php';
 require_once 'app/Model/Equipamento.php';
 require_once 'app/Model/Registro.php';
