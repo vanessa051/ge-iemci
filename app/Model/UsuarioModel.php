@@ -14,7 +14,8 @@ class UsuarioModel{
         if($stmt->rowCount()){
             $result = $stmt->fetch();
 
-            if($result['senha'] === $usuario->getSenha()){
+            if(password_verify($usuario->getSenha(), $result['senha'])){
+            //if($result['senha'] === $usuario->getSenha()){
                 $_SESSION['user'] = $result['id'];
 
                 return true;
@@ -40,13 +41,15 @@ class UsuarioModel{
             echo '<script>location.href="?pagina=login&metodo=index"</script>';
             die();
         }else{
-            $sql = 'INSERT INTO usuario (nome, cargo, departamento, email, senha) VALUES (:nome, :cargo, :dep, :email, :senha)';
+            $senhaHash = password_hash($dadosUsua['senha'], PASSWORD_DEFAULT);
+
+            $sql = 'INSERT INTO usuario (nome, cargo, departamento, email, senha) VALUES (:nome, :cargo, :dep, :email, :sh)';
             $sql = $con->prepare($sql);
             $sql->bindValue(':nome', $dadosUsua['nome']);
             $sql->bindValue(':cargo', $dadosUsua['cargo']);
             $sql->bindValue(':dep', $dadosUsua['departamento']);
             $sql->bindValue(':email', $dadosUsua['email']);
-            $sql->bindValue(':senha', $dadosUsua['senha']);
+            $sql->bindValue(':sh', $senhaHash);
 
             $resultado = $sql->execute();
     
