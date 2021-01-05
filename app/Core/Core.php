@@ -5,10 +5,20 @@
 class Core
 {
     private $usuario;
+    private $error;
 
     public function __construct()
     {
         $this->usuario = $_SESSION['user'] ?? null;
+        $this->error = $_SESSION['msg_error'] ?? null;
+
+        if(isset($this->error)){
+            if($this->error['count'] === 0){
+                $_SESSION['msg_error']['count']++;
+            }else{
+                unset($_SESSION['msg_error']);
+            }
+        }
     }
 
     public function start($urlGet)

@@ -37,7 +37,7 @@ class UsuarioModel{
 
         if($count > 0){
             echo '<script>alert("Email já cadastrado.");</script>';
-            echo '<script>location.href="?pagina=usuario&metodo=index"</script>';
+            echo '<script>location.href="?pagina=login&metodo=index"</script>';
             die();
         }else{
             $sql = 'INSERT INTO usuario (nome, cargo, departamento, email, senha) VALUES (:nome, :cargo, :dep, :email, :senha)';

@@ -17,6 +17,11 @@
          <label for="exampleInputPassword1">Senha</label>
          <input type="password" class="form-control" name="senha" placeholder="Senha">
        </div>
+
+       {% if error != '' %}
+       <span class="msg_error">Tentariva incorreta</span>
+       {% endif %}
+       
        <div class="form-group form-group">
          <a href="?pagina=login&metodo=telaCadastro">Ainda não é cadastrado? Cadastre-se.</a>
        </div>

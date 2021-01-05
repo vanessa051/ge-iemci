@@ -12,8 +12,9 @@ class LoginController
         $twig = new \Twig\Environment($loader);
 
         $template = $twig->load('login.html');
+        $parameters['error'] =  $_SESSION['msg_error'] ?? null;
 
-        $conteudo = $template->render();
+        $conteudo = $template->render($parameters);
         echo $conteudo;
     }
 
@@ -41,7 +42,8 @@ class LoginController
             header('Location: ?pagina=home&metodo=index');
 
         }catch(\Exception $e){
-            echo ('Tá errado');
+            $_SESSION['msg_error'] = array('msg' => $e->getMessage(), 'count' => 0);
+            header('Location: ?pagina=home&metodo=index');
         }
    
     }
@@ -52,10 +54,10 @@ class LoginController
 
             UsuarioModel::cadastro($_POST);
             echo '<script>alert("Usuário cadastrado com sucesso");</script>';
-            echo '<script>location.href="?pagina=home&metodo=index"</script>';
+            echo '<script>location.href="?pagina=login&metodo=index"</script>';
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '");</script>';
-            echo '<script>location.href="?pagina=home&metodo=index"</script>';
+            echo '<script>location.href="?pagina=login&metodo=index"</script>';
         }
     }
 

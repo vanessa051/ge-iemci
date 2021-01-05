@@ -29,11 +29,9 @@ class UsuarioController
 
 
     public function alteraUsuario()
-    {
-       
+    {      
       try {
         UsuarioModel::altera($_POST);
-
             echo '<script>alert("Publicação alterada com sucesso");</script>';
             echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         } catch (Exception $e) {
@@ -41,4 +39,5 @@ class UsuarioController
             echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
         }
     }
+
 }
