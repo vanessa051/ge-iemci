@@ -31,8 +31,7 @@ class LoginController
 
     public function check()
     {
-        try{
-          
+        try{          
             $usuario = new Usuario;
             $usuarioModel = new UsuarioModel;
             $usuario->setEmail($_POST['email']);

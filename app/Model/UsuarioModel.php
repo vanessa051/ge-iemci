@@ -16,7 +16,12 @@ class UsuarioModel{
 
             if(password_verify($usuario->getSenha(), $result['senha'])){
             //if($result['senha'] === $usuario->getSenha()){
-                $_SESSION['user'] = $result['id'];
+                $_SESSION['user'] = array(
+                    'id_user' => $result['id'], 
+                    'name_user' => $result['nome'], 
+                    'cargo' => $result['cargo'], 
+                    'departamento' => $result['departamento']
+                );
 
                 return true;
             }
@@ -29,7 +34,6 @@ class UsuarioModel{
 
     public static function cadastro($dadosUsua){
         $con = Connection::getConn();
-
 
         $sql = $con->prepare("SELECT count(*) FROM usuario WHERE :email = email");
         $sql->bindValue(':email', $dadosUsua['email']);

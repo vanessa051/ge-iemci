@@ -13,12 +13,9 @@ class UsuarioController
         $twig = new \Twig\Environment($loader);
         $template = $twig->load('viewUsuario.html');
 
-        $parametros = array();
-        $parametros['id'] = $usuario->id;
-        $parametros['nome'] = $usuario->nome;
-        $parametros['cargo'] = $usuario->cargo;
-        $parametros['departamento'] = $usuario->departamento;
-        $parametros['email'] = $usuario->email;
+        //INFORMAÇÃO DO USUÁRIO
+        var_dump($_SESSION['user']);
+        $info['name_user'] = $_SESSION['user']['name_user'];
 
         $conteudo = $template->render();
         echo $conteudo;
