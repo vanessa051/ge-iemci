@@ -3,7 +3,7 @@
 class UsuarioController 
 {
 
-    public function informacaoDaConta($params)
+    public function informacaoDaConta()
     {
         try{
 

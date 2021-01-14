@@ -55,6 +55,17 @@
 
     <div class="row">
       <div class="col col-lg-2">
+        <dt class="col-sm-3">Autor do Cadastro: </dt>
+      </div>
+      <div class="col-md-auto">
+        <p>{{ autor_cadastro }}</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col col-lg-2">
         <dt class="col-sm-3">Data de cadastro: </dt>
       </div>
       <div class="col-md-auto">
@@ -145,7 +156,7 @@
             <dt class="col">Nome:</dt>
           </div>
           <div class="col-md-auto">
-            <p>{{registro.nome}}</p>
+            <p>{{registro.autor_registro}}</p>
           </div>
         </div>
 
@@ -197,8 +208,8 @@
             </div>
 
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-
-            <input type="submit" value="Salvar" class="btn btn-primary">
+            <div class="float-right"><input type="submit" value="Salvar" class="btn btn-primary"></div>
+            
           </form>
         </div>
       </div>
@@ -275,8 +286,7 @@
           </div>
 
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <input type="submit" value="Salvar" class="btn btn-primary">
-
+          <div class="float-right"><input type="submit" value="Salvar" class="btn btn-primary"></div>
         </form>
       </div>
     </div>

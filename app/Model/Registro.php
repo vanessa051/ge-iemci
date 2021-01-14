@@ -22,9 +22,10 @@ class Registro
 
     public static function insert($dadosRegistro)
     {
+        $autor_registro['name_user'] = $_SESSION['user']['name_user'];
 
         if (empty($dadosRegistro['descricao'])) {
-            throw new Exception("Preencha todod os canpos", 1);
+            throw new Exception("Preencha todod os campos", 1);
 
             return false;
         }
@@ -33,10 +34,11 @@ class Registro
 
         $con = Connection::getConn();
 
-        $sql = 'INSERT INTO registro (descricao, id_equip, data_registro) VALUES (:descr, :id_equip, NOW())';
+        $sql = 'INSERT INTO registro (descricao, id_equip, autor_registro, data_registro) VALUES (:descr, :id_equip, :aRes, NOW())';
         $sql = $con->prepare($sql);
         $sql->bindValue(':descr', $dadosRegistro['descricao']);
         $sql->bindValue(':id_equip', $dadosRegistro['id_equip'], PDO::PARAM_INT);
+        $sql->bindValue(':aRes', $autor_registro['name_user']);
 
         $resultado = $sql->execute();
 

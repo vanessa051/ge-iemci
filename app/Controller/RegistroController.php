@@ -15,7 +15,9 @@ class RegistroController
             $parametros = array();
             $parametros['id'] = $equipamento->id;
             $parametros['modelo'] = $equipamento->modelo;
+            $parametros['autor_registro'] = $equipamento->autor_registro;
             $parametros['detalhes'] = $equipamento->detalhes;
+
 
             $conteudo = $template->render($parametros);
             echo $conteudo;

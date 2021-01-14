@@ -21,6 +21,7 @@ class EquipamentoController
             $parametros['departamento'] = $equipamento->departamento;
             $parametros['categoria'] = $equipamento->categoria;
             $parametros['registros'] = $equipamento->registros;
+            $parametros['autor_cadastro'] = $equipamento->autor_cadastro;
 
             $conteudo = $template->render($parametros);
             echo $conteudo;

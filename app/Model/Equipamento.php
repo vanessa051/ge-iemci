@@ -50,10 +50,9 @@ class Equipamento
 
     public static function insert($dadosEquip)
     {
-
-        /*FAZER TRATAMENTO DE SQL INJECTION*/
-
         $con = Connection::getConn();
+
+        $autor_cadastro['name_user'] = $_SESSION['user']['name_user'];
 
         $sql = $con->prepare("SELECT count(*) FROM equipamentos WHERE :num_p = num_patrimonio");
         $sql->bindValue(':num_p', $dadosEquip['num_patrimonio']);
@@ -63,7 +62,7 @@ class Equipamento
         if($count > 0){
             throw new Exception(("Numero do patromônio público já cadastrado"));
         }else{
-            $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial , num_patrimonio, departamento, categoria, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, NOW())';
+            $sql = 'INSERT INTO equipamentos (modelo, detalhes, num_serial , num_patrimonio, departamento, categoria, autor_cadastro, data_cadastro) VALUES (:model, :det, :num_s, :num_p, :dep, :cat, :aCad, NOW())';
             $sql = $con->prepare($sql);
             $sql->bindValue(':model', $dadosEquip['modelo']);
             $sql->bindValue(':det', $dadosEquip['detalhes']);
@@ -71,6 +70,7 @@ class Equipamento
             $sql->bindValue(':num_p', $dadosEquip['num_patrimonio']);
             $sql->bindValue(':dep', $dadosEquip['departamento']);
             $sql->bindValue(':cat', $dadosEquip['categoria']);
+            $sql->bindValue(':aCad', $autor_cadastro['name_user']);
     
             $resultado = $sql->execute();
     
