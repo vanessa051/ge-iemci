@@ -14,7 +14,6 @@ class HomeController
             $template = $twig->load('home.html');
 
             //INFORMAÇÃO DO USUÁRIO
-            var_dump($_SESSION['user']);
             $info['name_user'] = $_SESSION['user']['name_user'];
 
             //ENVIA OS DADOS DOS EQUIPAMENTOS CADASTRADOS PARA A VIEW home.html

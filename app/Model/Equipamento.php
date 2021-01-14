@@ -7,7 +7,6 @@ class Equipamento
     {
         $con = Connection::getConn();
 
-
         $sql = "SELECT *FROM equipamentos ORDER BY id DESC";
         $sql = $con->prepare($sql);
         $sql->execute();
@@ -17,11 +16,6 @@ class Equipamento
         while ($row = $sql->fetchObject('Equipamento')) {
             $resultado[] = $row;
         }
-
-        /*if (!$resultado) {
-            throw new Exception("Não foi encontrado registro no banco");
-        }*/
-
         return $resultado;
     }
 

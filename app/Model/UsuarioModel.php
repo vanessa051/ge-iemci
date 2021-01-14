@@ -2,6 +2,22 @@
 
 class UsuarioModel{
 
+    public static function listagemUsuarios()
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT *FROM usuario ORDER BY id DESC";
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $resultado = array();
+
+        while ($row = $sql->fetchObject('Usuario')) {
+            $resultado[] = $row;
+        }
+        return $resultado;
+    }
+
     public function validaLogin($usuario){
         $con = Connection::getConn();
         //VERIFICA SE EXISTE O EMAIL INSERIDO   

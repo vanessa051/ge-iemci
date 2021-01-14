@@ -2,6 +2,26 @@
 
 class UsuarioController 
 {
+    public function listagemUsuarios(){
+        try {
+            $rowUsuario = UsuarioModel::listagemUsuarios();
+
+            $loader = new \Twig\Loader\FilesystemLoader('app/View');
+            $twig = new \Twig\Environment($loader);
+            $template = $twig->load('listagemUsuarios.html');
+
+
+            //ENVIA OS DADOS DOS EQUIPAMENTOS CADASTRADOS PARA A VIEW home.html
+            $parametros = array();
+            $parametros['usuarios'] = $rowUsuario;
+
+            $conteudo = $template->render($parametros);
+            echo $conteudo;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
 
     public function informacaoDaConta()
     {
