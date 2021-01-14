@@ -1,6 +1,6 @@
 <?php
 
-//SE NÃO EXISTIR PAGINA ELE VAI DIRETO PARA O LoginController.php
+//PÁGINA RESPONSÁVEL PELO GERENCIAMENTO DE URL'S
 
 class Core
 {
@@ -12,10 +12,10 @@ class Core
         $this->usuario = $_SESSION['user'] ?? null;
         $this->error = $_SESSION['msg_error'] ?? null;
 
-        if(isset($this->error)){
-            if($this->error['count'] === 0){
+        if (isset($this->error)) {
+            if ($this->error['count'] === 0) {
                 $_SESSION['msg_error']['count']++;
-            }else{
+            } else {
                 unset($_SESSION['msg_error']);
             }
         }
@@ -23,19 +23,17 @@ class Core
 
     public function start($urlGet)
     {
-
         if (isset($urlGet['metodo'])) {
             $acao = $urlGet['metodo'];
         } else {
             $acao = 'index';
         }
 
-
         if (isset($urlGet['pagina'])) {
             $controller = ucfirst($urlGet['pagina'] . 'Controller');
         } else {
             $controller = 'LoginController';
-           // $controller = 'HomeController';
+            // $controller = 'HomeController';
         }
 
         if (!class_exists($controller)) {
@@ -48,9 +46,9 @@ class Core
             $id = null;
         }
 
-
         //VERIFICA SE EXISTE USUÁRIO LOGADO    
         if ($this->usuario) {
+            //DEFINE AS PERMISSÕES DO USUÁRIO LOGADO
             $pg_permission = ['HomeController', 'EquipamentoController', 'RegistroController', 'UsuarioController'];
             //DEFINE A PÁGINA PRINCIPAL PARA O USUÁRIO LOGADO
             if (!isset($controller) || !in_array($controller, $pg_permission)) {
@@ -58,6 +56,7 @@ class Core
                 $acao = 'index';
             }
         } else {
+            //DEFINE AS PERMISSÕES DO USUÁRIO NÃO LOGADO
             $pg_permission = ['LoginController'];
 
             if (!isset($controller) || !in_array($controller, $pg_permission)) {

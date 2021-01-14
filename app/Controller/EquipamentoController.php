@@ -2,9 +2,9 @@
 
 class EquipamentoController
 {
+    //FUNÇÃO PARA VISUALIZAÇÃO DA PÁGINA DE CADA EQUIPAMENTO
     public function viewEquipamento($params)
     {
-
         try {
             $equipamento = Equipamento::getById($params);
 
@@ -30,7 +30,7 @@ class EquipamentoController
         }
     }
 
-
+    //FUNÇÃO PARA ADICIONAR EQUIPAMENTOS
     public function addEquipamento()
     {
         try {
@@ -43,14 +43,11 @@ class EquipamentoController
         }
     }
 
-
-    //FUNÇÃO QUE ALTERA OS DADOS SELECIONADOS
+    //FUNÇÃO QUE ALTERA OS DADOS DOS EQUIPAMENTOS
     public function atualizaEquip()
     {
-       
-      try {
-        Equipamento::update($_POST);
-
+        try {
+            Equipamento::update($_POST);
             echo '<script>alert("Publicação alterada com sucesso");</script>';
             echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         } catch (Exception $e) {

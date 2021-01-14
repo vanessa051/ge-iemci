@@ -1,11 +1,9 @@
 <?php
+//PÁGINA RESPONSÁVEL PELA VALIDAÇÃO DO LOGIN E CADASTRO
 
-
-
-
-class LoginController 
+class LoginController
 {
-
+    //FUNÇÃO PARA EXIBIÇÃO DA TELA LOGIN
     public function index()
     {
         $loader = new \Twig\Loader\FilesystemLoader('app/View');
@@ -18,6 +16,7 @@ class LoginController
         echo $conteudo;
     }
 
+    //FUNÇÃO PARA EXIBIÇÃO DA TELA DE CADASTRO
     public function telaCadastro()
     {
         $loader = new \Twig\Loader\FilesystemLoader('app/View');
@@ -29,9 +28,10 @@ class LoginController
         echo $conteudo;
     }
 
+    //FUNÇÃO PARA VALIDAÇÃO DO LOGIN
     public function check()
     {
-        try{          
+        try {
             $usuario = new Usuario;
             $usuarioModel = new UsuarioModel;
             $usuario->setEmail($_POST['email']);
@@ -39,18 +39,16 @@ class LoginController
             $usuarioModel->validaLogin($usuario);
 
             header('Location: ?pagina=home&metodo=index');
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             $_SESSION['msg_error'] = array('msg' => $e->getMessage(), 'count' => 0);
             header('Location: ?pagina=home&metodo=index');
         }
-   
     }
 
+    //FUNÇÃO PARA VALIDAÇÃO DO CADASTRO DE USUÁRIO
     public function cadastrar()
     {
         try {
-
             UsuarioModel::cadastro($_POST);
             echo '<script>alert("Usuário cadastrado com sucesso");</script>';
             echo '<script>location.href="?pagina=login&metodo=index"</script>';
@@ -59,5 +57,4 @@ class LoginController
             echo '<script>location.href="?pagina=login&metodo=index"</script>';
         }
     }
-
 }

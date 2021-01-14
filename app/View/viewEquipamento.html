@@ -3,12 +3,13 @@
 
   <!-- Navbar brand -->
   <a class="navbar-brand nav-top" href="?pagina=home&metodo=index"><img src="public/img/logo-iemci.png" width="30"
-    height="30">Gestão de Equipamentos</a>
+      height="30">Gestão de Equipamentos</a>
 
   <!-- Collapse button -->
+  <div>Bem vindo {{name_user}}</div>
   <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span><i
-        class="fas fa-bars fa-1x"></i></span></button>
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span
+      class="navbar-toggler-icon"></span><i class="fas fa-bars fa-1x"></i></span></button>
 
   <!-- Collapsible content -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent1">
@@ -18,12 +19,15 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="#">Minha Conta</a>
+        <a class="nav-link" href="?pagina=usuario&metodo=informacaoDaConta">Minha Conta</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="?pagina=usuario&metodo=informacaoDaConta&id={{usuario.id}}">Usuários</a>
+        <a class="nav-link" href="?pagina=usuario&metodo=listagemUsuarios">Usuários</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="?pagina=home&metodo=logout">Sair</a>
       </li>
@@ -36,16 +40,18 @@
 </nav>
 <!--/.Navbar-->
 
-<div class="container">
-
 <!--Seção para exbir detalhes de um equipamento-->
+<div class="container">
   <section class="detalhesEquipamentos">
-    <dl class="row det-equi"><h3> Detalhes do Equipamento</h3></dl>
+    <dl class="row det-equi">
+      <h3> Detalhes do Equipamento</h3>
+    </dl>
 
     <div class="row">
       <div class="col col-lg-2">
         <dt class="col-sm-3">Modelo: </dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{modelo}}</p>
       </div>
@@ -57,6 +63,7 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Autor do Cadastro: </dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{ autor_cadastro }}</p>
       </div>
@@ -68,6 +75,7 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Data de cadastro: </dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{data_cadastro|date("d-M-Y")}}</p>
       </div>
@@ -79,6 +87,7 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Detalhes: </dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{detalhes}}</p>
       </div>
@@ -90,6 +99,7 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Número Serial</dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{num_serial}}</p>
       </div>
@@ -101,6 +111,7 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Número Patrimônio Público</dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{num_patrimonio}}</p>
       </div>
@@ -112,6 +123,7 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Departamento</dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{departamento}}</p>
       </div>
@@ -123,30 +135,34 @@
       <div class="col col-lg-2">
         <dt class="col-sm-3">Categoria</dt>
       </div>
+
       <div class="col-md-auto">
         <p>{{categoria}}</p>
       </div>
     </div>
 
     <div class="col-lg-12" style="text-align: right;">
-      <button class="btn btn-lg btn-warning btn-new-hardware" data-toggle="modal" data-target="#modalAlterarHardware" style=" color: white;">Alterar</button>
+      <button class="btn btn-lg btn-warning btn-new-hardware" data-toggle="modal" data-target="#modalAlterarHardware"
+        style=" color: white;">Alterar</button>
     </div>
   </section>
 
 
-<!--Seção para Visualização dos Registros-->
+  <!--Seção para Visualização dos Registros-->
   <section class="registros">
-    <dl class="row det-equi"> <h3> Registros</h3> </dl>
+    <dl class="row det-equi">
+      <h3> Registros</h3>
+    </dl>
 
     <div class="col-lg-12" style="text-align: right;">
-      <button class="btn btn-success btn-new-hardware" data-toggle="modal" data-target="#modalNewRegistro">Novo Registro</button>
+      <button class="btn btn-success btn-new-hardware" data-toggle="modal" data-target="#modalNewRegistro">Novo
+        Registro</button>
     </div>
 
     {% if registros == false %}
     <div class="alert alert-warning alert-registro" role="alert">
       Nenhum registro encontrado
     </div>
-
     {% else %} {% for registro in registros %}
 
     <div class="card">
@@ -155,6 +171,7 @@
           <div class="col col-lg-2">
             <dt class="col">Nome:</dt>
           </div>
+
           <div class="col-md-auto">
             <p>{{registro.autor_registro}}</p>
           </div>
@@ -164,6 +181,7 @@
           <div class="col col-lg-2">
             <dt class="col">Descrição:</dt>
           </div>
+
           <div class="col-md-auto">
             <p>{{registro.descricao}}</p>
           </div>
@@ -173,6 +191,7 @@
           <div class="col col-lg-2">
             <dt class="col">Data de Alteração:</dt>
           </div>
+
           <div class="col-md-auto">
             <p>{{registro.data_registro|date("d-M-Y")}}</p>
           </div>
@@ -181,12 +200,12 @@
     </div>
     <br>
     {% endfor %} {% endif %}
-</section>
-
+  </section>
 
 
   <!-- Modal Inserir Registro-->
-  <div class="modal fade" id="modalNewRegistro" tabindex="-1" role="dialog" aria-labelledby="modalNewRegistroLabel" aria-hidden="true">
+  <div class="modal fade" id="modalNewRegistro" tabindex="-1" role="dialog" aria-labelledby="modalNewRegistroLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -209,7 +228,7 @@
 
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             <div class="float-right"><input type="submit" value="Salvar" class="btn btn-primary"></div>
-            
+
           </form>
         </div>
       </div>
@@ -217,80 +236,81 @@
   </div>
 
 
-    <!-- Modal Alterar Cadastro-->
-  <div class="modal fade" id="modalAlterarHardware" tabindex="-1" role="dialog" aria-labelledby="modalAlterarHardwareLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalAlterarHardwareLabel">Alterar Equipamento</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+  <!-- Modal Alterar Cadastro-->
+  <div class="modal fade" id="modalAlterarHardware" tabindex="-1" role="dialog"
+    aria-labelledby="modalAlterarHardwareLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalAlterarHardwareLabel">Alterar Equipamento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-      <div class="modal-body">
-        <form method="POST" action="?pagina=equipamento&metodo=atualizaEquip">
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Modelo</label>
-            <div class="col-sm-10">
-              <input name="modelo" type="text" class="form-control" id="modelo"
-                placeholder="Insira o modelo do equipamento" value="{{modelo}}">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Detalhes</label>
-            <div class="col-sm-10">
-              <textarea name="detalhes" class="form-control" id="detalhe"
-                placeholder="Insira o modelo do equipamento">{{detalhes}}</textarea>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Serial</label>
-            <div class="col-sm-10">
-              <input name="num_serial" type="text" class="form-control" id="serial"
-                placeholder="Insira o número Serial" value="{{num_serial}}">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Patrimônio Público</label>
-            <div class="col-sm-10">
-              <input name="num_patrimonio" type="text" class="form-control" id="num_patrimonio"
-                placeholder="Insira o número do Patrimônio Público" value="{{num_patrimonio}}">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Departamento</label>
-            <div class="col-sm-10">
-              <input name="departamento" type="text" class="form-control" id="departamento"
-                placeholder="Insira o Departamento do equipamento" value="{{departamento}}">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-12">
-              <label>Categoria</label>
-              <select id="categoria" name="categoria" class="form-control">
-                <option selected>{{categoria}}</option>
-                <option value="Desktop">Desktop</option>
-                <option value="Notbook">Notbook</option>
-                <option value="Equipamento">Equipamento</option>
-              </select>
+        <div class="modal-body">
+          <form method="POST" action="?pagina=equipamento&metodo=atualizaEquip">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Modelo</label>
+              <div class="col-sm-10">
+                <input name="modelo" type="text" class="form-control" id="modelo"
+                  placeholder="Insira o modelo do equipamento" value="{{modelo}}">
+              </div>
             </div>
 
-            <input type="hidden" name="id_equip" value="{{id}}">
-            
-          </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Detalhes</label>
+              <div class="col-sm-10">
+                <textarea name="detalhes" class="form-control" id="detalhe"
+                  placeholder="Insira o modelo do equipamento">{{detalhes}}</textarea>
+              </div>
+            </div>
 
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <div class="float-right"><input type="submit" value="Salvar" class="btn btn-primary"></div>
-        </form>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Serial</label>
+              <div class="col-sm-10">
+                <input name="num_serial" type="text" class="form-control" id="serial"
+                  placeholder="Insira o número Serial" value="{{num_serial}}">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Patrimônio Público</label>
+              <div class="col-sm-10">
+                <input name="num_patrimonio" type="text" class="form-control" id="num_patrimonio"
+                  placeholder="Insira o número do Patrimônio Público" value="{{num_patrimonio}}">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Departamento</label>
+              <div class="col-sm-10">
+                <input name="departamento" type="text" class="form-control" id="departamento"
+                  placeholder="Insira o Departamento do equipamento" value="{{departamento}}">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Categoria</label>
+                <select id="categoria" name="categoria" class="form-control">
+                  <option selected>{{categoria}}</option>
+                  <option value="Desktop">Desktop</option>
+                  <option value="Notbook">Notbook</option>
+                  <option value="Equipamento">Equipamento</option>
+                </select>
+              </div>
+
+              <input type="hidden" name="id_equip" value="{{id}}">
+
+            </div>
+
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <div class="float-right"><input type="submit" value="Salvar" class="btn btn-primary"></div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </div>

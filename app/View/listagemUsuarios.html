@@ -1,41 +1,41 @@
 <!--Navbar-->
 <nav class="navbar navbar-light">
 
-    <!-- Navbar brand -->
-    <a class="navbar-brand nav-top" href="?pagina=home&metodo=index"><img src="public/img/logo-iemci.png" width="30"
-      height="30">Gestão de Equipamentos</a>
-  
-    <!-- Collapse button -->
-    <div>Bem vindo {{name_user}}</div>
-    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-      aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span><i
-          class="fas fa-bars fa-1x"></i></span></button>
-  
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-  
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Minha Conta</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?pagina=usuario&metodo=informacaoDaConta">Usuários</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?pagina=home&metodo=logout">Sair</a>
-        </li>
-      </ul>
-      <!-- Links -->
-  
-    </div>
-    <!-- Collapsible content -->
-  
-  </nav>
-  <!--/.Navbar-->
+  <!-- Navbar brand -->
+  <a class="navbar-brand nav-top" href="?pagina=home&metodo=index"><img src="public/img/logo-iemci.png" width="30"
+    height="30">Gestão de Equipamentos</a>
+
+  <!-- Collapse button -->
+  <div>Bem vindo {{name_user}}</div>
+  <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span><i
+        class="fas fa-bars fa-1x"></i></span></button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?pagina=usuario&metodo=informacaoDaConta">Minha Conta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?pagina=usuario&metodo=listagemUsuarios">Usuários</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?pagina=home&metodo=logout">Sair</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
   
   
   <div class="container">
@@ -46,7 +46,6 @@
       </div>
     </div>
   
-
     <table class="table table-striped ">
       <thead class="thead-table">
         <tr>
@@ -58,15 +57,13 @@
       </thead>
   
       {% for usuario in usuarios %}
-      <tbody>
-        
+      <tbody>        
         <tr>
           <td>{{usuario.nome}}</td>
           <td>{{usuario.cargo}}</td>
           <td>{{usuario.departamento}}</td>
           <td>{{usuario.email}}</td>
         </tr>
-  
         {% endfor %} 
       </tbody>
     </table>

@@ -3,13 +3,13 @@
 
   <!-- Navbar brand -->
   <a class="navbar-brand nav-top" href="?pagina=home&metodo=index"><img src="public/img/logo-iemci.png" width="30"
-    height="30">Gestão de Equipamentos</a>
+      height="30">Gestão de Equipamentos</a>
 
   <!-- Collapse button -->
   <div>Bem vindo {{name_user}}</div>
   <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span><i
-        class="fas fa-bars fa-1x"></i></span></button>
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span
+      class="navbar-toggler-icon"></span><i class="fas fa-bars fa-1x"></i></span></button>
 
   <!-- Collapsible content -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent1">
@@ -19,12 +19,15 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="?pagina=usuario&metodo=informacaoDaConta">Minha Conta</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="?pagina=usuario&metodo=listagemUsuarios">Usuários</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="?pagina=home&metodo=logout">Sair</a>
       </li>
@@ -39,11 +42,10 @@
 
 
 <div class="container">
-
   <div class="row row-home">
     <div class="col-lg-6" style="text-align: left;">
       <h3 class="btn-new">Equipamentos Cadastrados</h3>
-    </div>
+   </div>
 
     <div class="col-lg-6" style="text-align: right;">
       <button class="btn btn-success btn-new-hardware" data-toggle="modal" data-target="#modalNewHardware">Cadastrar
@@ -56,7 +58,7 @@
     Nenhum registro encontrado
   </div>
 
-  {% endif %}   
+  {% endif %}
   <table class="table table-striped ">
     <thead class="thead-table">
       <tr>
@@ -70,7 +72,6 @@
 
     {% for equipamento in equipamentos %}
     <tbody>
-      
       <tr>
         <td><a class="alert-link"
             href="?pagina=equipamento&metodo=viewEquipamento&id={{equipamento.id}}">{{equipamento.modelo}}</a></td>
@@ -79,8 +80,7 @@
         <td>{{equipamento.categoria}}</td>
         <td>{{equipamento.data_cadastro|date("d-M-Y")}}</td>
       </tr>
-
-      {% endfor %} 
+      {% endfor %}
     </tbody>
   </table>
 
@@ -104,8 +104,8 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Modelo*</label>
               <div class="col-sm-10">
-                <input name="modelo" type="text" class="form-control" id="modelo"
-                  placeholder="Ex: Dell Inpiron 15 3000" required>
+                <input name="modelo" type="text" class="form-control" id="modelo" placeholder="Ex: Dell Inpiron 15 3000"
+                  required>
               </div>
             </div>
 
@@ -120,8 +120,7 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Serial</label>
               <div class="col-sm-10">
-                <input name="num_serial" type="text" class="form-control" id="serial"
-                  placeholder="Ex: 001100110011">
+                <input name="num_serial" type="text" class="form-control" id="serial" placeholder="Ex: 001100110011">
               </div>
             </div>
 
@@ -157,9 +156,7 @@
             <div class="float-right"><input type="submit" value="Salvar" class="btn btn-primary"></div>
 
           </form>
-
         </div>
-
       </div>
     </div>
   </div>

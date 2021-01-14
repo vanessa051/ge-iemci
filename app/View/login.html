@@ -1,34 +1,35 @@
 <section class="section-login">
   <div class="container-login">
 
-<div class="card card-login">
-       <div class="card-header-login">
-         <img class="logo" src="/ge-iemci/public/img/logo-iemci.png">
-         <h3>Login</h3>
-       </div>
-   
-   <form method="POST" action="?pagina=login&metodo=check">
-       <div class="form-group">
-         <label for="exampleInputEmail1">Endereço de email</label>
-         <input type="email" class="form-control"  name="email" placeholder="Seu email">
-         <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
-       </div>
-       <div class="form-group">
-         <label for="exampleInputPassword1">Senha</label>
-         <input type="password" class="form-control" name="senha" placeholder="Senha">
-       </div>
+    <div class="card card-login">
+      <div class="card-header-login">
+        <img class="logo" src="/ge-iemci/public/img/logo-iemci.png">
+        <h3>Login</h3>
+      </div>
 
-       {% if error != '' %}
-       <span class="msg-error">Tentariva incorreta</span>       
-       {% endif %}
-       
-       <div class="form-group form-group">
-         <a href="?pagina=login&metodo=telaCadastro">Ainda não é cadastrado? Cadastre-se.</a>
-       </div>
-       <button type="submit" class="btn btn-primary">Enviar</button>
-     </form>
-       
-   </div>
-   </div>
+      <form method="POST" action="?pagina=login&metodo=check">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Endereço de email</label>
+          <input type="email" class="form-control" name="email" placeholder="Seu email">
+          <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Senha</label>
+          <input type="password" class="form-control" name="senha" placeholder="Senha">
+        </div>
+
+        {% if error != '' %}
+        <span class="msg-error">Tentariva incorreta</span>
+        {% endif %}
+
+        <div class="form-group form-group">
+          <a href="?pagina=login&metodo=telaCadastro">Ainda não é cadastrado? Cadastre-se.</a>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+
+    </div>
+  </div>
 </section>
-

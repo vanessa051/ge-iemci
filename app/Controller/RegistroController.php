@@ -1,10 +1,11 @@
 <?php
+//PÁGINA RESPONSÁVEL PELA EXIBIÇÃO E CADASTRO DOS REGISTROS
 
 class RegistroController
 {
+    //FUNÇÃO PARA EXIBIÇÃO DOS REGISTROS
     public function index($params)
     {
-
         try {
             $equipamento = Equipamento::getById($params);
 
@@ -18,7 +19,6 @@ class RegistroController
             $parametros['autor_registro'] = $equipamento->autor_registro;
             $parametros['detalhes'] = $equipamento->detalhes;
 
-
             $conteudo = $template->render($parametros);
             echo $conteudo;
         } catch (Exception $e) {
@@ -26,12 +26,11 @@ class RegistroController
         }
     }
 
-
+    //FUNÇÃO PARA ADICIONAR REGISTROS
     public function addRegistro()
     {
         try {
             Registro::insert($_POST);
-
             header('Location:?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '');
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '");</script>';

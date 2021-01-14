@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class Usuario{
     private $nome;
     private $cargo;

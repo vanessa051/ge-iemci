@@ -1,15 +1,13 @@
 <?php
 
-class UsuarioModel{
-
+class UsuarioModel
+{
     public static function listagemUsuarios()
     {
         $con = Connection::getConn();
-
         $sql = "SELECT *FROM usuario ORDER BY id DESC";
         $sql = $con->prepare($sql);
         $sql->execute();
-
         $resultado = array();
 
         while ($row = $sql->fetchObject('Usuario')) {
@@ -18,7 +16,9 @@ class UsuarioModel{
         return $resultado;
     }
 
-    public function validaLogin($usuario){
+
+    public function validaLogin($usuario)
+    {
         $con = Connection::getConn();
         //VERIFICA SE EXISTE O EMAIL INSERIDO   
         $sql = 'SELECT * FROM usuario WHERE email = :email';
@@ -27,18 +27,17 @@ class UsuarioModel{
         $stmt->execute();
 
         //SE EXISTIR O EMAIL, VERIFICA SE A SENHA ESTÁ CORRETA
-        if($stmt->rowCount()){
+        if ($stmt->rowCount()) {
             $result = $stmt->fetch();
 
-            if(password_verify($usuario->getSenha(), $result['senha'])){
+            if (password_verify($usuario->getSenha(), $result['senha'])) {
                 $_SESSION['user'] = array(
-                    'id_user' => $result['id'], 
-                    'name_user' => $result['nome'], 
-                    'cargo' => $result['cargo'], 
+                    'id_user' => $result['id'],
+                    'name_user' => $result['nome'],
+                    'cargo' => $result['cargo'],
                     'departamento' => $result['departamento'],
                     'email' => $result['email']
                 );
-
                 return true;
             }
         }
@@ -46,21 +45,19 @@ class UsuarioModel{
     }
 
 
-
-
-    public static function cadastro($dadosUsua){
+    public static function cadastro($dadosUsua)
+    {
         $con = Connection::getConn();
-
         $sql = $con->prepare("SELECT count(*) FROM usuario WHERE :email = email");
         $sql->bindValue(':email', $dadosUsua['email']);
         $sql->execute();
         $count = $sql->fetchColumn();
 
-        if($count > 0){
+        if ($count > 0) {
             echo '<script>alert("Email já cadastrado.");</script>';
             echo '<script>location.href="?pagina=login&metodo=index"</script>';
             die();
-        }else{
+        } else {
             $senhaHash = password_hash($dadosUsua['senha'], PASSWORD_DEFAULT);
 
             $sql = 'INSERT INTO usuario (nome, cargo, departamento, email, senha) VALUES (:nome, :cargo, :dep, :email, :sh)';
@@ -70,24 +67,22 @@ class UsuarioModel{
             $sql->bindValue(':dep', $dadosUsua['departamento']);
             $sql->bindValue(':email', $dadosUsua['email']);
             $sql->bindValue(':sh', $senhaHash);
-
             $resultado = $sql->execute();
-    
+
             if ($resultado == 0) {
                 throw new Exception(("Usuário não cadastrado."));
-    
+
                 return false;
-            }           
+            }
         }
-        return true;   
+        return true;
     }
+
 
     public static function altera($params)
     {
         $con = Connection::getConn();
-
         $sql = 'UPDATE usuario SET  nome = :nome, cargo = :cargo, departamento = :dep, email = :email, senha = :senha WHERE id = :id';
-        
         $sql = $con->prepare($sql);
         $sql->bindValue(':nome', $params['nome']);
         $sql->bindValue(':cargo', $params['cargo']);
@@ -95,33 +90,27 @@ class UsuarioModel{
         $sql->bindValue(':email', $params['email']);
         $sql->bindValue(':dep', $params['departamento']);
         $sql->bindValue(':id', $params['id_equip']);
-
         $sql->execute();
-
         $resultado = $sql->execute();
 
-        if ($resultado == 0){
+        if ($resultado == 0) {
             throw new Exception(("Usuário não alterado"));
 
             return false;
         }
-
         return true;
     }
+
 
     public static function userGetById($idUsuario)
     {
         $con = Connection::getConn();
-
         $sql = "SELECT * FROM usuario WHERE id = :id";
         $sql = $con->prepare($sql);
         $sql->bindValue('id', $idUsuario, PDO::PARAM_INT);
         $sql->execute();
-
         $resultado = $sql->fetchObject('Usuario');
 
         return $resultado;
     }
-
-
 }
