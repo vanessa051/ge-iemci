@@ -15,12 +15,12 @@ class UsuarioModel{
             $result = $stmt->fetch();
 
             if(password_verify($usuario->getSenha(), $result['senha'])){
-            //if($result['senha'] === $usuario->getSenha()){
                 $_SESSION['user'] = array(
                     'id_user' => $result['id'], 
                     'name_user' => $result['nome'], 
                     'cargo' => $result['cargo'], 
-                    'departamento' => $result['departamento']
+                    'departamento' => $result['departamento'],
+                    'email' => $result['email']
                 );
 
                 return true;
