@@ -75,5 +75,13 @@ table{
     height: 100vh;
     background-image: linear-gradient(to right top, #292c4c, #2d365c, #2e416c, #2d4c7d, #29588e, #2369a0, #187bb2, #008dc3, #00a9d5, #00c5e3, #2be0ec, #5ffbf1);
     background-repeat: repeat-y;
-    
 }
+
+.msg-error{
+    color: red;
+    padding-bottom: 30px;
+    text-align: center;
+
+}
+
+
