@@ -48,11 +48,11 @@ class EquipamentoController
     {
         try {
             Equipamento::update($_POST);
-            echo '<script>alert("Publicação alterada com sucesso");</script>';
+            echo '<script>alert("Equipamento alterado com sucesso");</script>';
             echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         } catch (Exception $e) {
-            echo $e->getMessage(); /*'<script>alert("' . $e->getMessage() . '");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
+            echo $e->getMessage(); 
+            
         }
     }
 }

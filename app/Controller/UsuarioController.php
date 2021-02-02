@@ -58,4 +58,18 @@ class UsuarioController
             echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
         }
     }
+
+
+
+    public function excluiUsuario()
+    {
+        try {
+            UsuarioModel::exclui();
+            echo '<script>alert("Usuário excluído com sucesso");</script>';
+            echo '<script>location.href="?pagina=login&metodo=index"</script>';
+        } catch (Exception $e) {
+            echo $e->getMessage(); /*'<script>alert("' . $e->getMessage() . '");</script>';
+            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
+        }
+    }
 }

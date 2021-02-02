@@ -37,7 +37,7 @@
 </nav>
 <!--/.Navbar-->
 
- <!--Seção para exbir detalhes dos usuário-->
+<!--Seção para exbir detalhes dos usuário-->
 <div class="container">
   <section class="detalhesUsuarios">
     <dl class="row det-equi">
@@ -92,7 +92,8 @@
 
     <hr>
 
-    <a href="#" class="text-danger"><span>Excluir cadastro</span></a>
+    <a class="text-danger" data-toggle="modal" data-target="#modalConfirmaExcluirConta" style="cursor: pointer;">Excluir
+      cadastro</a>
 
     <div class="col-lg-12" style="text-align: center">
       <button class="btn btn-lg btn-warning btn-new-hardware" data-toggle="modal" data-target="#modalAlterarInfoConta"
@@ -100,6 +101,22 @@
     </div>
   </section>
 
+
+<!-- Modal Excluir Cadastro-->
+  <div class="modal fade" id="modalConfirmaExcluirConta" tabindex="-1" role="dialog"
+    aria-labelledby="modalConfirmaExcluirConta" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Deseja realmente exluir sua conta?</h4>
+        </div>
+        <div class="modal-body">
+          <a href="?pagina=usuario&metodo=excluiUsuario"><button type="button" class="btn btn-danger">Sim</button></a>
+          <button type="button" class="btn btn-info" data-dismiss="modal">Não</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Modal Alterar Cadastro-->

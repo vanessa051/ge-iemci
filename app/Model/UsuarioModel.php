@@ -2,6 +2,28 @@
 
 class UsuarioModel
 {
+    
+    public static function exclui(){
+        $con = Connection::getConn();
+
+        $email_usuario['email'] = $_SESSION['user']['email'];
+
+        $sql = "DELETE FROM usuario WHERE email = :email";
+        $sql = $con->prepare($sql);
+
+        $sql->bindValue(':email', $email_usuario['email']);
+        $sql->execute();
+        $resultado = $sql->execute();
+
+        if ($resultado == 0) {
+            throw new Exception(("Usuário não excluido"));
+
+            return false;
+        }
+        return true;
+    }
+
+
     public static function listagemUsuarios()
     {
         $con = Connection::getConn();
@@ -54,7 +76,7 @@ class UsuarioModel
         $count = $sql->fetchColumn();
 
         if ($count > 0) {
-            echo '<script>alert("Email já cadastrado.");</script>';
+            echo '<script>alert("Email já cadastrado, tente outro.");</script>';
             echo '<script>location.href="?pagina=login&metodo=index"</script>';
             die();
         } else {
