@@ -18,7 +18,7 @@ class Core
             } else {
                 unset($_SESSION['msg_error']);
             }
-        }
+        }       
     }
 
     public function start($urlGet)
@@ -33,7 +33,6 @@ class Core
             $controller = ucfirst($urlGet['pagina'] . 'Controller');
         } else {
             $controller = 'LoginController';
-            // $controller = 'HomeController';
         }
 
         if (!class_exists($controller)) {

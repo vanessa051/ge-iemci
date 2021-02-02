@@ -12,9 +12,11 @@ class UsuarioController
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('listagemUsuarios.html');
 
+
             //ENVIA OS DADOS DOS USUÁRIOS CADASTRADOS PARA A VIEW home.html
             $parametros = array();
             $parametros['usuarios'] = $rowUsuario;
+            $parametros['nome_usuario'] = $_SESSION['user']['name_user']; //INFORMAÇÃO DO USUÁRIO LOGADO
 
             $conteudo = $template->render($parametros);
             echo $conteudo;
@@ -32,7 +34,6 @@ class UsuarioController
             $template = $twig->load('viewUsuario.html');
 
             //INFORMAÇÃO DO USUÁRIO
-            var_dump($_SESSION['user']);
             $info['name_user'] = $_SESSION['user']['name_user'];
             $info['cargo'] = $_SESSION['user']['cargo'];
             $info['departamento'] = $_SESSION['user']['departamento'];
