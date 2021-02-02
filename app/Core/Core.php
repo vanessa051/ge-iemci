@@ -35,10 +35,6 @@ class Core
             $controller = 'LoginController';
         }
 
-        if (!class_exists($controller)) {
-            $controller = 'ErroController';
-        }
-
         if (isset($urlGet['id']) && $urlGet['id'] != null) {
             $id = $urlGet['id'];
         } else {

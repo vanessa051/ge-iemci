@@ -18,7 +18,7 @@ class Registro
     }
 
 
-    public static function insert($dadosRegistro)
+    public static function inserirRegistro($dadosRegistro)
     {
         $autor_registro['name_user'] = $_SESSION['user']['name_user'];
 

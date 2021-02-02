@@ -123,16 +123,4 @@ class UsuarioModel
         return true;
     }
 
-
-    public static function userGetById($idUsuario)
-    {
-        $con = Connection::getConn();
-        $sql = "SELECT * FROM usuario WHERE id = :id";
-        $sql = $con->prepare($sql);
-        $sql->bindValue('id', $idUsuario, PDO::PARAM_INT);
-        $sql->execute();
-        $resultado = $sql->fetchObject('Usuario');
-
-        return $resultado;
-    }
 }

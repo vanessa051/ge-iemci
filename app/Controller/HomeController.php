@@ -7,7 +7,7 @@ class HomeController
     public function index()
     {
         try {
-            $rowEquipamento = Equipamento::allHardwares();
+            $rowEquipamento = Equipamento::visualizarTodosEquipamentos();
 
             $loader = new \Twig\Loader\FilesystemLoader('app/View');
             $twig = new \Twig\Environment($loader);

@@ -7,11 +7,11 @@ class RegistroController
     public function index($params)
     {
         try {
-            $equipamento = Equipamento::getById($params);
+            $equipamento = Equipamento::buscarPorId($params);
 
             $loader = new \Twig\Loader\FilesystemLoader('app/View');
             $twig = new \Twig\Environment($loader);
-            $template = $twig->load('viewEquipamento.html');
+            $template = $twig->load('visualizarEquipamento.html');
 
             $parametros = array();
             $parametros['id'] = $equipamento->id;
@@ -27,14 +27,14 @@ class RegistroController
     }
 
     //FUNÇÃO PARA ADICIONAR REGISTROS
-    public function addRegistro()
+    public function adicionarRegistro()
     {
         try {
-            Registro::insert($_POST);
-            header('Location:?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '');
+            Registro::inserirRegistro($_POST);
+            header('Location:?pagina=equipamento&metodo=visualizarEquipamento&id=' . $_POST['id_equip'] . '');
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
+            echo '<script>location.href="?pagina=equipamento&metodo=visulizarEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         }
     }
 

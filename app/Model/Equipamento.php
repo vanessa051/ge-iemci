@@ -3,7 +3,7 @@
 
 class Equipamento
 {
-    public static function allHardwares()
+    public static function visualizarTodosEquipamentos()
     {
         $con = Connection::getConn();
         $sql = "SELECT *FROM equipamentos ORDER BY id DESC";
@@ -18,7 +18,7 @@ class Equipamento
     }
 
 
-    public static function getById($idEquipamento)
+    public static function buscarPorId($idEquipamento)
     {
         $con = Connection::getConn();
         $sql = "SELECT * FROM equipamentos WHERE id = :id";
@@ -37,7 +37,7 @@ class Equipamento
     }
 
 
-    public static function insert($dadosEquip)
+    public static function adicionar($dadosEquip)
     {
         $con = Connection::getConn();
         $autor_cadastro['name_user'] = $_SESSION['user']['name_user'];
@@ -69,7 +69,7 @@ class Equipamento
         return true;
     }
 
-    public static function update($params)
+    public static function alterar($params)
     {
         $con = Connection::getConn();
         $sql = 'UPDATE equipamentos SET  modelo = :model, detalhes = :det, num_serial = :num_s,num_patrimonio = :num_p, departamento = :dep, categoria = :cat WHERE id = :id';

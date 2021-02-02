@@ -52,15 +52,12 @@ class UsuarioController
         try {
             UsuarioModel::altera($_POST);
             echo '<script>alert("Usuário alterado com sucesso");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
+            echo '<script>location.href="?pagina=equipamento&metodo=visualizarEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         } catch (Exception $e) {
-            echo $e->getMessage(); /*'<script>alert("' . $e->getMessage() . '");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
-        }
+            echo $e->getMessage();       }
     }
 
-
-
+   //FUNÇÃO PARA EXCLUIR A CONTA DO USUÁRIO
     public function excluiUsuario()
     {
         try {
@@ -68,8 +65,6 @@ class UsuarioController
             echo '<script>alert("Usuário excluído com sucesso");</script>';
             echo '<script>location.href="?pagina=login&metodo=index"</script>';
         } catch (Exception $e) {
-            echo $e->getMessage(); /*'<script>alert("' . $e->getMessage() . '");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';*/
-        }
+            echo $e->getMessage();       }
     }
 }

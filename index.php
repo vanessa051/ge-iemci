@@ -4,7 +4,6 @@ session_start();
 
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/EquipamentoController.php';
-require_once 'app/Controller/ErroController.php';
 require_once 'app/Controller/RegistroController.php';
 require_once 'app/Controller/LoginController.php';
 require_once 'app/Controller/UsuarioController.php';

@@ -3,14 +3,14 @@
 class EquipamentoController
 {
     //FUNÇÃO PARA VISUALIZAÇÃO DA PÁGINA DE CADA EQUIPAMENTO
-    public function viewEquipamento($params)
+    public function visualizarEquipamento($params)
     {
         try {
-            $equipamento = Equipamento::getById($params);
+            $equipamento = Equipamento::buscarPorId($params);
 
             $loader = new \Twig\Loader\FilesystemLoader('app/View');
             $twig = new \Twig\Environment($loader);
-            $template = $twig->load('viewEquipamento.html');
+            $template = $twig->load('visualizarEquipamento.html');
 
             $parametros = array();
             $parametros['id'] = $equipamento->id;
@@ -31,10 +31,10 @@ class EquipamentoController
     }
 
     //FUNÇÃO PARA ADICIONAR EQUIPAMENTOS
-    public function addEquipamento()
+    public function adicionarEquipamento()
     {
         try {
-            Equipamento::insert($_POST);
+            Equipamento::adicionar($_POST);
             echo '<script>alert("Equipamento inserido com sucesso");</script>';
             echo '<script>location.href="?pagina=home&metodo=index"</script>';
         } catch (Exception $e) {
@@ -44,12 +44,12 @@ class EquipamentoController
     }
 
     //FUNÇÃO QUE ALTERA OS DADOS DOS EQUIPAMENTOS
-    public function atualizaEquip()
+    public function alterarEquipamento()
     {
         try {
-            Equipamento::update($_POST);
+            Equipamento::alterar($_POST);
             echo '<script>alert("Equipamento alterado com sucesso");</script>';
-            echo '<script>location.href="?pagina=equipamento&metodo=viewEquipamento&id=' . $_POST['id_equip'] . '"</script>';
+            echo '<script>location.href="?pagina=equipamento&metodo=visualizarEquipamento&id=' . $_POST['id_equip'] . '"</script>';
         } catch (Exception $e) {
             echo $e->getMessage(); 
             

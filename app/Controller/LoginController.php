@@ -29,7 +29,7 @@ class LoginController
     }
 
     //FUNÇÃO PARA VALIDAÇÃO DO LOGIN
-    public function check()
+    public function validarLogin()
     {
         try {
             $usuario = new Usuario;
@@ -46,7 +46,7 @@ class LoginController
     }
 
     //FUNÇÃO PARA VALIDAÇÃO DO CADASTRO DE USUÁRIO
-    public function cadastrar()
+    public function cadastrarUsuario()
     {
         try {
             UsuarioModel::cadastro($_POST);
